@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Leborh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg1: #1a0b2e;
+    --bg2: #3b1055;
+    --bg3: #7a1f5c;
+    --pink: #ff7eb6;
+    --gold: #ffd6a5;
+    --text: #fff4f8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--text);
+    background: linear-gradient(160deg, var(--bg1), var(--bg2) 50%, var(--bg3));
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  canvas#hearts { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  section { position: relative; z-index: 1; padding: 80px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
+
+  /* Hero */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+  .hero small { letter-spacing: 6px; text-transform: uppercase; color: var(--gold); opacity: .85; font-size: .8rem; }
+  .hero h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(4rem, 17vw, 9rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 10px 0;
+    background: linear-gradient(90deg, var(--pink), var(--gold), var(--pink));
+    background-size: 200% auto;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 5s linear infinite;
+    filter: drop-shadow(0 0 20px rgba(255,126,182,.45));
+  }
+  @keyframes shine { to { background-position: 200% center; } }
+  .typed { min-height: 2em; font-size: 1.15rem; font-weight: 300; max-width: 520px; }
+  .typed::after { content: '|'; animation: blink 1s steps(1) infinite; margin-left: 2px; color: var(--pink); }
+  @keyframes blink { 50% { opacity: 0; } }
+  .scroll { margin-top: 50px; color: var(--gold); text-decoration: none; font-size: .9rem; animation: bob 2s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: translateY(8px); } }
+
+  /* Heading */
+  h2 { font-family: 'Great Vibes', cursive; font-weight: 400; font-size: clamp(2.4rem, 8vw, 3.6rem); color: var(--pink); margin-bottom: 40px; }
+
+  /* Cards */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .card {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px 24px;
+    transition: transform .3s, box-shadow .3s, background .3s;
+    opacity: 0; transform: translateY(30px);
+  }
+  .card.show { opacity: 1; transform: none; }
+  .card:hover { transform: translateY(-8px) scale(1.02); background: rgba(255,255,255,.12); box-shadow: 0 15px 40px rgba(255,126,182,.25); }
+  .card .emoji { font-size: 2.2rem; display: block; margin-bottom: 12px; }
+  .card h3 { color: var(--gold); margin-bottom: 8px; font-weight: 600; }
+  .card p { font-weight: 300; line-height: 1.6; font-size: .95rem; }
+
+  /* Letter */
+  .letter {
+    background: rgba(255,255,255,.06);
+    border-left: 3px solid var(--pink);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: left;
+    line-height: 1.9;
+    font-weight: 300;
+    font-size: 1.05rem;
+  }
+  .letter .sign { font-family: 'Great Vibes', cursive; font-size: 2rem; color: var(--gold); margin-top: 16px; display: block; text-align: right; }
+
+  /* Button + surprise */
+  button {
+    font-family: inherit; font-size: 1.05rem; font-weight: 600;
+    color: #2a0a3a; background: linear-gradient(135deg, var(--pink), var(--gold));
+    border: none; padding: 16px 38px; border-radius: 50px; cursor: pointer;
+    box-shadow: 0 8px 30px rgba(255,126,182,.4);
+    transition: transform .2s, box-shadow .2s;
+  }
+  button:hover { transform: scale(1.06); box-shadow: 0 12px 40px rgba(255,126,182,.6); }
+  #surprise { margin-top: 30px; font-family: 'Great Vibes', cursive; font-size: clamp(2rem, 7vw, 3.2rem); color: var(--gold); min-height: 1.5em; }
+
+  footer { position: relative; z-index: 1; text-align: center; padding: 40px 20px 60px; font-weight: 300; opacity: .7; font-size: .9rem; }
+  .beat { display: inline-block; animation: beat 1.2s infinite; }
+  @keyframes beat { 0%,100% { transform: scale(1); } 15% { transform: scale(1.3); } 30% { transform: scale(1); } 45% { transform: scale(1.2); } }
+</style>
+</head>
+<body>
+
+<canvas id="hearts"></canvas>
+
+<section class="hero">
+  <small>this one is for you</small>
+  <h1>Leborh</h1>
+  <p class="typed" id="typed"></p>
+  <a class="scroll" href="#reasons">scroll down ↓</a>
+</section>
+
+<section id="reasons">
+  <h2>Why I Admire You</h2>
+  <div class="grid">
+    <!-- ✏️ EDIT these cards with your own reasons! -->
+    <div class="card"><span class="emoji">✨</span><h3>Your Light</h3><p>You walk into a room and somehow it gets brighter. I notice it every single time.</p></div>
+    <div class="card"><span class="emoji">😊</span><h3>Your Smile</h3><p>It's my favourite thing to see, and my favourite thing to try to cause.</p></div>
+    <div class="card"><span class="emoji">💪</span><h3>Your Strength</h3><p>The way you keep going and keep growing inspires me more than you know.</p></div>
+    <div class="card"><span class="emoji">🌙</span><h3>Your Heart</h3><p>Kind, warm and real. You make the people around you feel safe.</p></div>
+    <div class="card"><span class="emoji">😂</span><h3>Your Laugh</h3><p>The best sound there is. I'd tell bad jokes all day just to hear it.</p></div>
+    <div class="card"><span class="emoji">🌹</span><h3>You, Simply</h3><p>Just exactly as you are. Nothing about you needs to change.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>A Little Note</h2>
+  <div class="letter">
+    <!-- ✏️ Replace this with your own words -->
+    Leborh,<br><br>
+    I built this for you because I wanted to make something as beautiful as you are.
+    I'm not sure code can ever do you justice, but I wanted you to have something
+    to open whenever you need a reminder of how special you are, and how much you
+    mean to me.<br><br>
+    Thank you for being you.
+    <span class="sign">Yours, always</span>
+  </div>
+</section>
+
+<section>
+  <h2>One More Thing</h2>
+  <button id="btn">Tap me, Leborh 💖</button>
+  <div id="surprise"></div>
+</section>
+
+<footer>Made with <span class="beat">❤️</span> for Leborh</footer>
+
+<script>
+/* ---------- Typed message ---------- */
+const lines = [
+  "Some people are simply a gift.",
+  "You're one of them.",
+  "I hope this makes you smile. 💕"
+];
+const typedEl = document.getElementById('typed');
+let li = 0, ci = 0, deleting = false;
+function type() {
+  const current = lines[li];
+  typedEl.textContent = current.slice(0, ci);
+  if (!deleting && ci < current.length) { ci++; setTimeout(type, 70); }
+  else if (!deleting) { deleting = true; setTimeout(type, 1600); }
+  else if (ci > 0) { ci--; setTimeout(type, 30); }
+  else { deleting = false; li = (li + 1) % lines.length; setTimeout(type, 400); }
+}
+type();
+
+/* ---------- Floating hearts ---------- */
+const canvas = document.getElementById('hearts');
+const ctx = canvas.getContext('2d');
+function resize() { canvas.width = innerWidth; canvas.height = innerHeight; }
+resize(); addEventListener('resize', resize);
+
+const hearts = [];
+function makeHeart(x, y, burst) {
+  return {
+    x: x ?? Math.random() * canvas.width,
+    y: y ?? canvas.height + 20,
+    size: 8 + Math.random() * 16,
+    speed: burst ? 1 + Math.random() * 3 : 0.4 + Math.random() * 1.1,
+    drift: (Math.random() - 0.5) * (burst ? 4 : 0.8),
+    alpha: 0.2 + Math.random() * 0.5,
+    hue: 320 + Math.random() * 40,
+    wob: Math.random() * Math.PI * 2
+  };
+}
+function drawHeart(h) {
+  const s = h.size;
+  ctx.save();
+  ctx.translate(h.x, h.y);
+  ctx.globalAlpha = h.alpha;
+  ctx.fillStyle = `hsl(${h.hue}, 90%, 70%)`;
+  ctx.beginPath();
+  ctx.moveTo(0, s / 4);
+  ctx.bezierCurveTo(0, -s / 2, -s, -s / 2, -s, s / 6);
+  ctx.bezierCurveTo(-s, s * .7, 0, s, 0, s * 1.2);
+  ctx.bezierCurveTo(0, s, s, s * .7, s, s / 6);
+  ctx.bezierCurveTo(s, -s / 2, 0, -s / 2, 0, s / 4);
+  ctx.fill();
+  ctx.restore();
+}
+function loop() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (Math.random() < 0.06) hearts.push(makeHeart());
+  for (let i = hearts.length - 1; i >= 0; i--) {
+    const h = hearts[i];
+    h.y -= h.speed;
+    h.wob += 0.03;
+    h.x += h.drift + Math.sin(h.wob) * 0.4;
+    h.alpha -= 0.0008;
+    drawHeart(h);
+    if (h.y < -30 || h.alpha <= 0) hearts.splice(i, 1);
+  }
+  requestAnimationFrame(loop);
+}
+loop();
+
+/* Hearts burst wherever you click or tap */
+addEventListener('pointerdown', e => {
+  for (let i = 0; i < 8; i++) hearts.push(makeHeart(e.clientX, e.clientY, true));
+});
+
+/* ---------- Cards reveal on scroll ---------- */
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('show'), i * 120);
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('.card').forEach(c => io.observe(c));
+
+/* ---------- Surprise button ---------- */
+const messages = [
+  "You are loved. 💖",
+  "You are enough. ✨",
+  "You are beautiful. 🌹",
+  "You make my world better. 🌍",
+  "I'm so lucky it's you. 🍀"
+];
+let mi = 0;
+document.getElementById('btn').addEventListener('click', () => {
+  document.getElementById('surprise').textContent = messages[mi++ % messages.length];
+  for (let i = 0; i < 40; i++) hearts.push(makeHeart(Math.random() * canvas.width, canvas.height * (0.5 + Math.random() * 0.5), true));
+});
+</script>
+</body>
+</html>
